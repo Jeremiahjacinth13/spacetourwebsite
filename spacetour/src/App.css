@@ -1,38 +1,72 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: Barlow;
+  src: url(assets/fonts/Barlow-Regular.ttf);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: Bellefair;
+  src: url(assets/fonts/Bellefair-Regular.ttf);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+  font-family: 'Barlow Condensed Regular';
+  src: url(assets/fonts/Barlow-Light.ttf);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+:root {
+  --background-color: #0B0D17;
+  --primary-color: #D0D6F9;
+  --white-color: #ffffff;
 }
 
-.App-link {
-  color: #61dafb;
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  font-size: 16px;
+  font-family: Barlow, sans-serif;
 }
+
+.heading, .subheading {
+  font-family: 'Bellefair', serif;
+}
+
+.heading-1 {
+  font-size: 150px;
+}
+
+.heading-2 {
+  font-size: 100px;
+}
+
+.heading-3 {
+  font-size: 56px;
+}
+
+.heading-4 {
+  font-size: 32px;
+}
+
+.heading-5 {
+  font-size: 28px;
+  letter-spacing: 1.4em;
+}
+
+.subheading-1 {
+  font-size: 28px;
+}
+
+.subheading-2 {
+  font-size: 14px;
+  font-family: 'Barlow Condensed Regular', serif;
+}
+
+.navtext {
+  font-size: 16px;
+  font-family: 'Barlow Condensed Regular', serif;
+}
+/*# sourceMappingURL=App.css.map */

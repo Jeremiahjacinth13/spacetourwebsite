@@ -1,0 +1,72 @@
+
+@font-face {
+    font-family: Barlow;
+    src: url(assets/fonts/Barlow-Regular.ttf);
+}
+
+@font-face{
+    font-family: Bellefair;
+    src: url(assets/fonts/Bellefair-Regular.ttf)
+}
+
+@font-face {
+    font-family: 'Barlow Condensed Regular';
+    src: url(assets/fonts/Barlow-Light.ttf);
+}
+
+:root{
+    --background-color: #0B0D17;
+    --primary-color: #D0D6F9;
+    --white-color: #ffffff;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body
+{
+    font-size: 16px;
+    font-family: Barlow, sans-serif;
+}
+
+.heading, .subheading{
+    font-family: 'Bellefair', serif;
+}
+
+.heading-1{
+    font-size: 150px;
+}
+
+.heading-2{
+    font-size: 100px;
+}
+
+.heading-3{
+    font-size: 56px;
+}
+
+.heading-4{
+    font-size: 32px;
+}
+
+.heading-5{
+    font-size: 28px;
+    letter-spacing: 1.4em;
+}
+
+.subheading-1{
+    font-size: 28px;
+}
+
+.subheading-2{
+    font-size: 14px;
+    font-family: 'Barlow Condensed Regular', serif;
+}
+
+.navtext{
+    font-size: 16px;
+    font-family: 'Barlow Condensed Regular', serif;
+}
