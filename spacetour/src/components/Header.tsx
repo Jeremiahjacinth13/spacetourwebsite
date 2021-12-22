@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, Ref, RefObject } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 
 import logo from '../assets/shared/logo.svg'
@@ -65,7 +65,9 @@ export const Header: React.FC = () => {
         50,
       ),
     )
-  }, [currentLocation, navLinksPath])
+
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeNavLinkIndex])
 
   return (
     <header>
