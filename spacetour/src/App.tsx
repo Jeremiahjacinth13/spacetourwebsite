@@ -11,22 +11,25 @@ import './App.css'
 import { Header } from './components'
 
 function SpaceTours() {
-
-  const location = useLocation();
-
   return (
-    <AnimatePresence exitBeforeEnter initial={false}>
-      <BrowserRouter>
-        <Header />
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/destination" element={<Destination />} />
-          <Route path="/tech" element={<Technology />} />
-          <Route path="/crew" element={<CrewPage />} />
-        </Routes>
-      </BrowserRouter>
-    </AnimatePresence>
+    <BrowserRouter>
+      <Header />
+      <AnimatedRoutes />
+    </BrowserRouter>
   )
 }
 
+const AnimatedRoutes = () => {
+  const location = useLocation()
+  return (
+    <AnimatePresence exitBeforeEnter>
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/destination" element={<Destination />} />
+        <Route path="/tech" element={<Technology />} />
+        <Route path="/crew" element={<CrewPage />} />
+      </Routes>
+    </AnimatePresence>
+  )
+}
 export default SpaceTours

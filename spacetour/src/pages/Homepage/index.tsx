@@ -1,16 +1,22 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import './homepage.css'
 
 const HomePage: React.FC = () => {
   const currentPath = useLocation().pathname
 
   return (
-    <main className={`homepage ${currentPath === '/' && 'active'}`}>
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className={`homepage ${currentPath === '/' && 'active'}`}
+    >
       <div className="container">
         <div className="container__text">
           <p className="subheading-1">SO, YOU WANT TO TRAVEL TO</p>
-          <div className='animate-down'>
+          <div className="animate-down">
             <h1 className="heading heading-1">SPACE</h1>
           </div>
           <p>
@@ -29,7 +35,7 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </div>
-    </main>
+    </motion.main>
   )
 }
 
