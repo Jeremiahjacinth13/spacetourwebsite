@@ -1,48 +1,8 @@
-@-webkit-keyframes increaseOpacity {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes increaseOpacity {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes transformUp {
-  from {
-    -webkit-transform: translateY(80%);
-            transform: translateY(80%);
-  }
-  to {
-    -webkit-transform: translateY(0%);
-            transform: translateY(0%);
-  }
-}
-
-@keyframes transformUp {
-  from {
-    -webkit-transform: translateY(80%);
-            transform: translateY(80%);
-  }
-  to {
-    -webkit-transform: translateY(0%);
-            transform: translateY(0%);
-  }
-}
-
 main.homepage {
   background-image: url(../../assets/home/background-home-desktop.jpg);
 }
 
-.container {
+main.homepage .container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -51,52 +11,38 @@ main.homepage {
   padding-bottom: 10vh;
 }
 
-.container .animate-down {
+main.homepage .container .animate-down {
   overflow: hidden;
 }
 
-.container .animate-down * {
-  opacity: 0;
-  -webkit-animation: transformUp 800ms 500ms ease forwards, increaseOpacity 500ms 500ms ease forwards;
-          animation: transformUp 800ms 500ms ease forwards, increaseOpacity 500ms 500ms ease forwards;
-}
-
-.container > div {
+main.homepage .container > div {
   width: 50%;
 }
 
-.container > div:first-of-type {
+main.homepage .container > div:first-of-type {
   padding-left: 12rem;
 }
 
-.container > div:first-of-type p {
+main.homepage .container > div:first-of-type p {
   color: var(--primary-color);
-  opacity: 0;
 }
 
-.container > div:first-of-type p.subheading-1 {
-  -webkit-animation: increaseOpacity 800ms forwards ease;
-          animation: increaseOpacity 800ms forwards ease;
-}
-
-.container > div:first-of-type p:not(.subheading-1) {
+main.homepage .container > div:first-of-type p:not(.subheading-1) {
   font-size: 18px;
   line-height: 2rem;
-  -webkit-animation: transformUp 700ms 1000ms forwards ease, increaseOpacity 2500ms 1000ms ease forwards;
-          animation: transformUp 700ms 1000ms forwards ease, increaseOpacity 2500ms 1000ms ease forwards;
 }
 
-.container > div:first-of-type h1 {
+main.homepage .container > div:first-of-type h1 {
   margin-top: 1rem;
 }
 
-.container .container__button {
+main.homepage .container .container__button {
   display: -ms-grid;
   display: grid;
   place-content: end center;
 }
 
-.container .container__button .main__button__container {
+main.homepage .container .container__button .main__button__container {
   width: 274px;
   height: 274px;
   border-radius: 50%;
@@ -106,7 +52,7 @@ main.homepage {
   display: block;
 }
 
-.container .container__button button {
+main.homepage .container .container__button button {
   outline: none;
   border: none;
   width: 100%;
@@ -115,7 +61,7 @@ main.homepage {
   border-radius: 50%;
 }
 
-.container .container__button button a {
+main.homepage .container .container__button button a {
   width: 100%;
   height: 100%;
   color: var(--background-color);
@@ -131,7 +77,7 @@ main.homepage {
           justify-content: center;
 }
 
-.container .container__button .overlay {
+main.homepage .container .container__button .overlay {
   position: absolute;
   width: 90%;
   height: 90%;
@@ -147,9 +93,9 @@ main.homepage {
   transition: width .5s ease, height 1.2s ease-out;
 }
 
-.container .container__button button:hover ~ .overlay,
-.container .container__button button:focus ~ .overlay,
-.container .container__button button:active ~ .overlay {
+main.homepage .container .container__button button:hover ~ .overlay,
+main.homepage .container .container__button button:focus ~ .overlay,
+main.homepage .container .container__button button:active ~ .overlay {
   height: 140%;
   width: 140%;
 }
