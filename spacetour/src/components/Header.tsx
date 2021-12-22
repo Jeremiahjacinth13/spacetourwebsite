@@ -67,7 +67,7 @@ export const Header: React.FC = () => {
     )
 
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeNavLinkIndex])
+  }, [activeNavLinkIndex, currentLocation])
 
   return (
     <header>
