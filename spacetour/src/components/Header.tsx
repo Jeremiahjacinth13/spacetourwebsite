@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, Ref, RefObject } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 
 import logo from '../assets/shared/logo.svg'
 import { getUnderlineNewPosition } from '../helper'
@@ -18,10 +18,10 @@ export const Header: React.FC = () => {
     { to: '/tech', title: 'Technology' },
   ]
 
-  const homeNavLInk = useRef<HTMLElement>()
-  const destinationNavLink = useRef<HTMLElement>()
-  const crewNavLink = useRef<HTMLElement>()
-  const techNavLink = useRef<HTMLElement>()
+  const homeNavLInk = useRef<HTMLAnchorElement>()
+  const destinationNavLink = useRef<HTMLAnchorElement>()
+  const crewNavLink = useRef<HTMLAnchorElement>()
+  const techNavLink = useRef<HTMLAnchorElement>()
 
   const navElementRef = useRef<HTMLElement>()
 
@@ -43,32 +43,43 @@ export const Header: React.FC = () => {
 
   const [underlinePosition, setUnderlinePosition] = useState<string>(
     getUnderlineNewPosition(
-        navElementRef.current?.getBoundingClientRect().x as number,
-        navLinkElements[activeNavLinkIndex].current?.getBoundingClientRect().width as number,
-        navLinkElements[activeNavLinkIndex].current?.getBoundingClientRect().x as number,
-        50
-    )
+      navElementRef.current?.getBoundingClientRect().x as number,
+      navLinkElements[activeNavLinkIndex].current?.getBoundingClientRect()
+        .width as number,
+      navLinkElements[activeNavLinkIndex].current?.getBoundingClientRect()
+        .x as number,
+      50,
+    ),
   )
 
   useEffect(() => {
     setActiveNavLinkIndex(navLinksPath.indexOf(currentLocation))
-    
-    setUnderlinePosition(getUnderlineNewPosition(
+
+    setUnderlinePosition(
+      getUnderlineNewPosition(
         navElementRef.current?.getBoundingClientRect().x as number,
-        navLinkElements[activeNavLinkIndex].current?.getBoundingClientRect().width as number,
-        navLinkElements[activeNavLinkIndex].current?.getBoundingClientRect().x as number,
-        50
-    ));
-    
+        navLinkElements[activeNavLinkIndex].current?.getBoundingClientRect()
+          .width as number,
+        navLinkElements[activeNavLinkIndex].current?.getBoundingClientRect()
+          .x as number,
+        50,
+      ),
+    )
   }, [currentLocation, navLinksPath])
 
   return (
     <header>
-      <img src={logo} alt="company logo" />
+      <Link to="/">
+        <img src={logo} alt="company logo" />
+      </Link>
+
+      {/*@ts-ignore*/}
       <nav className="nav" ref={navElementRef}>
         {navLinks.map((navLink, index) => (
-          <NavLink
+            <NavLink
             key={index}
+            
+            // @ts-ignore
             ref={navLinkElements[index]}
             className={({ isActive }) =>
               `nav__navitem ${isActive && 'nav__navitem--active'}`
@@ -81,19 +92,18 @@ export const Header: React.FC = () => {
             <span className="nav__item__title">{navLink.title}</span>
           </NavLink>
         ))}
-        <ActiveLinkUnderline currentPosition={underlinePosition} />
+        <ActiveLinkUnderline 
+            left={underlinePosition} 
+            width={navLinkElements[activeNavLinkIndex].current?.getBoundingClientRect().width + 'px'} 
+        />
       </nav>
     </header>
   )
 }
 
-const ActiveLinkUnderline: React.FC<{ currentPosition: string }> = ({
-  currentPosition,
+const ActiveLinkUnderline: React.FC<{ left: string; width: string }> = ({
+  left,
+  width,
 }) => {
-  return (
-    <div
-      className="activeLinkUnderline"
-      style={{ left: currentPosition }}
-    ></div>
-  )
+  return <div className="activeLinkUnderline" style={{ left, width }}></div>
 }

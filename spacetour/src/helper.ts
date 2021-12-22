@@ -5,7 +5,7 @@ export function getUnderlineNewPosition(
     underlineWidth: number = 50,
 ): string {
 
-    let newPosition = activeLinkX - navX + activeLinkWidth / 2 - underlineWidth /2 ;
+    let newPosition = activeLinkX - navX;
 
     return newPosition + 'px';
 }

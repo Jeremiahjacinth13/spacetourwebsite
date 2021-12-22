@@ -1,7 +1,12 @@
 import React from 'react'
+import './destination.css'
 
 const Destination = () => {
-  return <h1>THis is the destination page</h1>
+  return (
+    <main className='destination'>
+
+    </main>
+  )
 }
 
 export { Destination }

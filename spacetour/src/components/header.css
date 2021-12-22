@@ -50,9 +50,9 @@ nav::before{
 .activeLinkUnderline
 {
     position: absolute;
-    width: 50px;
+    width: 75px;
     height: 2px;
     background:var(--white-color);
     bottom: 0;
-    transition: left 350ms ease-in;
+    transition: left 350ms ease-in, width 250ms ease-in;
 }
