@@ -27,8 +27,10 @@
 }
 
 body {
+  background: black;
   font-size: 16px;
   font-family: Barlow, sans-serif;
+  color: var(--white-color);
 }
 
 .heading, .subheading {

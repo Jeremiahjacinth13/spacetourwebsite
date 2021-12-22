@@ -7,10 +7,12 @@ import { Technology } from './pages/Technology'
 import { CrewPage } from './pages/Crew'
 
 import './App.css'
+import { Header } from './components'
 
 function SpaceTours() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/destination" element={<Destination />} />
@@ -18,7 +20,7 @@ function SpaceTours() {
         <Route path="/crew" element={<CrewPage />} />
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
 export default SpaceTours
