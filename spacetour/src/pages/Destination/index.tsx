@@ -1,9 +1,50 @@
-import React from 'react'
 import { motion } from 'framer-motion'
-import moon from '../../assets/destination/image-moon.png'
 import './destination.css'
+import data from '../../data.json'
+import { useParams } from 'react-router-dom'
+
+import mars from '../../assets/destination/image-mars.png'
+import moon from '../../assets/destination/image-moon.png'
+import europa from '../../assets/destination/image-europa.png'
+import titan from '../../assets/destination/image-titan.png'
+
+type DestinationType = {
+  name: string
+  images: {
+    png: string
+    webp?: string
+  }
+  description: string
+  distance: string
+  travel: string
+}
 
 const Destination = () => {
+  const destinationImages = [moon, mars, europa, titan]
+
+  const { destinationName } = useParams()
+
+  const destinations: DestinationType[] = data.destinations.map(
+    (destination, index) => ({
+      ...destination,
+      images: { ...destination.images, png: destinationImages[index] },
+    }),
+  )
+
+  const destination: DestinationType = (function () {
+
+    if (destinationName) {
+
+      let destination = destinations.find(
+        (destination) => destinationName.toLowerCase() === destination.name.toLowerCase()
+      ) as DestinationType
+
+      return destination
+    }
+
+    return destinations[0] as DestinationType
+  })()
+
   return (
     <motion.main
       className="destination"
@@ -17,21 +58,16 @@ const Destination = () => {
             <span className="number">01</span>
             PICK YOUR DESTINATION
           </p>
-          <img src={moon} alt="" />
+          <pre>{JSON.stringify(destination, null, 3)}</pre>
+          <img src={destination.images.png} alt={destination.name} />
         </div>
         <div>
-          {/* <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore sit
-          magnam, ullam minus velit ducimus necessitatibus, dolorem rerum
-          voluptatem fuga beatae. Ea odit maxime magni earum asperiores quam
-          accusantium dolorem inventore, rem ducimus quod velit excepturi, quo
-          sapiente, aspernatur nam? Assumenda libero incidunt, natus fuga quas
-          facere animi distinctio aliquam?
-          </p> */}
+          <nav></nav>
         </div>
       </div>
     </motion.main>
   )
 }
+
 
 export { Destination }

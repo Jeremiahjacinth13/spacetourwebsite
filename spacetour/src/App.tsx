@@ -24,10 +24,13 @@ const AnimatedRoutes = () => {
   return (
     <AnimatePresence exitBeforeEnter>
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/destination" element={<Destination />} />
-        <Route path="/tech" element={<Technology />} />
-        <Route path="/crew" element={<CrewPage />} />
+        <Route path="" element={<HomePage />} />
+        <Route path="destination">
+          <Route index element = {<Destination />} />
+          <Route path = ":destinationName" element = {<Destination />} />
+        </Route>
+        <Route path="tech" element={<Technology />} />
+        <Route path="crew" element={<CrewPage />} />
       </Routes>
     </AnimatePresence>
   )

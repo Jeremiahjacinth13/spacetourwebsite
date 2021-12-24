@@ -37,9 +37,8 @@ export const Header: React.FC = () => {
 
   const navLinksPath = navLinks.map((link) => link.to)
 
-  const [activeNavLinkIndex, setActiveNavLinkIndex] = useState<number>(
-    navLinksPath.indexOf(currentLocation),
-  )
+  //FIXME: change 0 to the value of the currently active nav link
+  const [activeNavLinkIndex, setActiveNavLinkIndex] = useState<number>(0)
 
   const [underlinePosition, setUnderlinePosition] = useState<string>(
     getUnderlineNewPosition(
@@ -53,8 +52,21 @@ export const Header: React.FC = () => {
   )
 
   useEffect(() => {
-    setActiveNavLinkIndex(navLinksPath.indexOf(currentLocation))
+    if (currentLocation === navLinksPath[0]) {
+      setActiveNavLinkIndex(0)
+    } else {
+      setActiveNavLinkIndex(
+        navLinksPath.findIndex(
+          (path) =>
+            path !== navLinksPath[0] &&
+            new RegExp(`${path}`).test(currentLocation),
+        ),
+      )
+    }
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentLocation])
 
+  useEffect(() => {
     setUnderlinePosition(
       getUnderlineNewPosition(
         navElementRef.current?.getBoundingClientRect().x as number,
@@ -65,9 +77,8 @@ export const Header: React.FC = () => {
         50,
       ),
     )
-
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeNavLinkIndex, currentLocation])
+  }, [activeNavLinkIndex])
 
   return (
     <header>
@@ -78,9 +89,8 @@ export const Header: React.FC = () => {
       {/*@ts-ignore*/}
       <nav className="nav" ref={navElementRef}>
         {navLinks.map((navLink, index) => (
-            <NavLink
+          <NavLink
             key={index}
-            
             // @ts-ignore
             ref={navLinkElements[index]}
             className={({ isActive }) =>
@@ -94,9 +104,12 @@ export const Header: React.FC = () => {
             <span className="nav__item__title">{navLink.title}</span>
           </NavLink>
         ))}
-        <ActiveLinkUnderline 
-            left={underlinePosition} 
-            width={navLinkElements[activeNavLinkIndex].current?.getBoundingClientRect().width + 'px'} 
+        <ActiveLinkUnderline
+          left={underlinePosition}
+          width={
+            navLinkElements[activeNavLinkIndex].current?.getBoundingClientRect()
+              .width + 'px'
+          }
         />
       </nav>
     </header>

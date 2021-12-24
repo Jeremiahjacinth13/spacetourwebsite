@@ -21,7 +21,7 @@ nav{
     text-transform: uppercase;
 }
 
-nav::before{
+header nav::before{
     content: '';
     position: absolute;
     height: 0.5px;
