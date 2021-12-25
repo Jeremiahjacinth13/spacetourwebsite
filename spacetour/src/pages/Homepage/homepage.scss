@@ -1,11 +1,13 @@
 
 main.homepage{
-    background-image: url(../../assets/home/background-home-desktop.jpg);    
+    background-image: url(../../assets/home/background-home-desktop.jpg);
+    display: flex;
+    align-items: flex-end;
+
     .container{
         display: flex;
-        position: absolute;
-        bottom: 0;
-        padding-bottom: 10vh;
+        align-items: center;
+        padding-bottom: 8vh;
     
         .animate-down{
             overflow: hidden;

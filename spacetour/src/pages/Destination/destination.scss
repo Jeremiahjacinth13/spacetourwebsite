@@ -1,11 +1,11 @@
 main.destination {
   background-image: url(../../assets/destination/background-destination-desktop.jpg);
+  display: flex;
+  align-items: flex-end;
 
   .container {
     display: flex;
-    position: absolute;
-    bottom: 0;
-    padding-bottom: 10vh;
+    padding-bottom: 8vh;
     width: 100%;
     align-items: center;
 
@@ -14,12 +14,11 @@ main.destination {
 
       &:first-of-type {
         padding-left: 12rem;
-        width: 40%;
+        // width: 40%;
 
         .subheading-1 {
           color: var(--white-color);
-          margin-top: 1.5em;
-          margin-bottom: 1.7em;
+          margin-bottom: 2.5em;
 
           span {
             opacity: 0.45;
@@ -28,10 +27,10 @@ main.destination {
         }
 
         img {
-          width: 100%;
+          width: 70%;
           display: block;
           margin-left: auto;
-          margin-right: -20%;
+          margin-right: 10%;
         }
 
         h1 {
@@ -39,43 +38,96 @@ main.destination {
         }
       }
 
-      &:last-of-type{
-        width: 60%;
-        background-color: white;
-        padding: 4rem;
+      .animate-down {
+        overflow: hidden;
+        // padding: 5px;
+      }
+
+      &:last-of-type {
+        padding-left: 4rem;
+
+        p {
+          line-height: 32px;
+          font-size: 18px;
+          font-weight: 100;
+          width: 95%;
+          color: var(--primary-color);
+        }
       }
     }
   }
 
-  nav{
+  nav {
     position: relative;
-    padding: 1.7rem 6rem;
-    width: 65%;
+    padding: 1.7rem 0;
+    width: 100%;
     display: flex;
-    gap: 2em;
-    font-size: 16px;
+    gap: 1.5em;
+    font-size: 14px;
     text-transform: uppercase;
+    margin-bottom: 0.5rem;
 
-    .nav__navitem{
-      display: flex;
-      gap: 7px;
-      color: white;
+    .nav__navitem {
+      color: var(--white-color);
       letter-spacing: 2.7px;
       text-decoration: none;
-  }
-  
-  .nav__item__number{
-      font-weight: bold;
-  }
-  
-  .activeLinkUnderline
-  {
+      position: relative;
+
+      &.nav__navitem--active::after{
+        opacity: 1;
+      }
+
+      &:hover::after{
+        opacity: 0.3;
+      }
+    }
+
+    .nav__navitem::after{
+      transition: opacity 350ms;
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: var(--white-color);
+      bottom: -10px;
+      left: 0;
+      opacity: 0;
+      right: 0;
+    }
+
+    .activeLinkUnderline {
       position: absolute;
       width: 75px;
       height: 2px;
-      background:var(--white-color);
+      background: var(--white-color);
       bottom: 0;
       transition: left 350ms ease-in, width 250ms ease-in;
+    }
   }
-}
+
+  .destination__details {
+    position: relative;
+    // background-color: red;
+    width: 74%;
+
+    .divider {
+      height: 1px;
+      width: 100%;
+      background-color: #383b4b;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .destination__distance__time__container {
+    display: flex;
+
+    > div {
+      width: 50%;
+    }
+    h1{
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+  }
 }

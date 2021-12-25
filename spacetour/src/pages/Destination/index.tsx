@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import './destination.css'
 import data from '../../data.json'
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink, useParams, useLocation } from 'react-router-dom'
 
 import mars from '../../assets/destination/image-mars.png'
 import moon from '../../assets/destination/image-moon.png'
@@ -22,7 +22,8 @@ type DestinationType = {
 const Destination = () => {
   const destinationImages = [moon, mars, europa, titan]
 
-  const { destinationName } = useParams()
+  const { destinationName } = useParams();
+  const location = useLocation()
 
   const destinations: DestinationType[] = data.destinations.map(
     (destination, index) => ({
@@ -47,9 +48,9 @@ const Destination = () => {
   return (
     <motion.main
       className="destination"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      // initial={{ opacity: 0 }}
+      // animate={{ opacity: 1 }}
+      // exit={{ opacity: 0 }}
     >
       <div className="container">
         <div>
@@ -58,16 +59,58 @@ const Destination = () => {
             PICK YOUR DESTINATION
           </p>
           {/* <pre>{JSON.stringify(destination, null, 3)}</pre> */}
-          <img src={destination.images.png} alt={destination.name} />
+          <motion.img
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{duration: 1}}
+            src={destination.images.png}
+            alt={destination.name}
+          />
         </div>
         <div>
-          <nav>
-            {destinations.map((destination) => (
-              <NavLink to={`/destination/${destination.name.toLowerCase()}`}>
-                {destination.name}
-              </NavLink>
-            ))}
-          </nav>
+          <div className="destination__details">
+            <nav>
+              {destinations.map((destination) => (
+                <NavLink
+                  className={({ isActive }) =>
+                    `nav__navitem ${isActive || location.pathname === '/destination' && 'nav__navitem--active'}`
+                  }
+                  to={`/destination/${destination.name.toLowerCase()}`}
+                >
+                  {destination.name}
+                </NavLink>
+              ))}
+            </nav>
+            <div className="animate-down">
+              <motion.h1
+                initial={{ y: -100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: 100, opacity: 0 }}
+                transition={{duration: 0.5}}
+                className="heading heading-2"
+              >
+                {destination.name.toUpperCase()}
+              </motion.h1>
+            </div>
+            <div className="animate-down">
+              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                {destination.description}
+              </motion.p>
+            </div>
+
+            <div className="divider"></div>
+            <motion.div className="destination__distance__time__container">
+              <div>
+                <p>AVG. DISTANCE</p>
+                <h1 className="heading heading-5">{destination.distance}</h1>
+              </div>
+              <div>
+                <p>EST. TRAVEL TIME</p>
+                <h1 className="heading heading-5">{destination.travel}</h1>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </motion.main>
