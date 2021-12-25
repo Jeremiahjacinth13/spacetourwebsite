@@ -9,7 +9,7 @@ header{
     z-index: 1;
 }
 
-nav{
+header nav{
     position: relative;
     padding: 1.7rem 6rem;
     background: rgba(175, 175, 175, 0.04);

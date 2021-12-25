@@ -14,6 +14,7 @@ main.destination {
 
       &:first-of-type {
         padding-left: 12rem;
+        width: 40%;
 
         .subheading-1 {
           color: var(--white-color);
@@ -27,15 +28,54 @@ main.destination {
         }
 
         img {
-          width: 70%;
+          width: 100%;
           display: block;
           margin-left: auto;
+          margin-right: -20%;
         }
 
         h1 {
           margin-top: 1rem;
         }
       }
+
+      &:last-of-type{
+        width: 60%;
+        background-color: white;
+        padding: 4rem;
+      }
     }
   }
+
+  nav{
+    position: relative;
+    padding: 1.7rem 6rem;
+    width: 65%;
+    display: flex;
+    gap: 2em;
+    font-size: 16px;
+    text-transform: uppercase;
+
+    .nav__navitem{
+      display: flex;
+      gap: 7px;
+      color: white;
+      letter-spacing: 2.7px;
+      text-decoration: none;
+  }
+  
+  .nav__item__number{
+      font-weight: bold;
+  }
+  
+  .activeLinkUnderline
+  {
+      position: absolute;
+      width: 75px;
+      height: 2px;
+      background:var(--white-color);
+      bottom: 0;
+      transition: left 350ms ease-in, width 250ms ease-in;
+  }
+}
 }

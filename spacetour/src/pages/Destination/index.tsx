@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import './destination.css'
 import data from '../../data.json'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 
 import mars from '../../assets/destination/image-mars.png'
 import moon from '../../assets/destination/image-moon.png'
@@ -32,11 +32,10 @@ const Destination = () => {
   )
 
   const destination: DestinationType = (function () {
-
     if (destinationName) {
-
       let destination = destinations.find(
-        (destination) => destinationName.toLowerCase() === destination.name.toLowerCase()
+        (destination) =>
+          destinationName.toLowerCase() === destination.name.toLowerCase(),
       ) as DestinationType
 
       return destination
@@ -58,16 +57,21 @@ const Destination = () => {
             <span className="number">01</span>
             PICK YOUR DESTINATION
           </p>
-          <pre>{JSON.stringify(destination, null, 3)}</pre>
+          {/* <pre>{JSON.stringify(destination, null, 3)}</pre> */}
           <img src={destination.images.png} alt={destination.name} />
         </div>
         <div>
-          <nav></nav>
+          <nav>
+            {destinations.map((destination) => (
+              <NavLink to={`/destination/${destination.name.toLowerCase()}`}>
+                {destination.name}
+              </NavLink>
+            ))}
+          </nav>
         </div>
       </div>
     </motion.main>
   )
 }
-
 
 export { Destination }
