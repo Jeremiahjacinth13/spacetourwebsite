@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import './destination.css'
 import data from '../../data.json'
-import { NavLink, useParams, useLocation } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 
 import mars from '../../assets/destination/image-mars.png'
 import moon from '../../assets/destination/image-moon.png'
@@ -23,7 +23,6 @@ const Destination = () => {
   const destinationImages = [moon, mars, europa, titan]
 
   const { destinationName } = useParams();
-  const location = useLocation()
 
   const destinations: DestinationType[] = data.destinations.map(
     (destination, index) => ({
@@ -74,7 +73,7 @@ const Destination = () => {
               {destinations.map((destination) => (
                 <NavLink
                   className={({ isActive }) =>
-                    `nav__navitem ${isActive || location.pathname === '/destination' && 'nav__navitem--active'}`
+                    `nav__navitem ${ isActive && 'nav__navitem--active'}`
                   }
                   to={`/destination/${destination.name.toLowerCase()}`}
                 >
