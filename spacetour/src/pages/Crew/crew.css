@@ -1,11 +1,6 @@
 main.crew {
   background: url("../../assets/crew/background-crew-desktop.jpg") right;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  overflow: hidden;
 }
 
 main.crew .container {
@@ -18,29 +13,6 @@ main.crew .container {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-main.crew .container .dots__container {
-  position: absolute;
-  left: 12rem;
-  bottom: 2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: 1rem;
-}
-
-main.crew .container .dots__container .dot {
-  cursor: pointer;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  opacity: 0.2;
-  background: var(--white-color);
-}
-
-main.crew .container .dots__container .dot.active {
-  opacity: 1;
 }
 
 main.crew .container > div {
@@ -80,6 +52,27 @@ main.crew .container > div:first-of-type .bio {
   line-height: 32px;
 }
 
+main.crew .container > div:first-of-type .dots__container {
+  margin-top: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+}
+
+main.crew .container > div:first-of-type .dots__container .dot {
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  opacity: 0.2;
+  background: var(--white-color);
+}
+
+main.crew .container > div:first-of-type .dots__container .dot.active {
+  opacity: 1;
+}
+
 main.crew .container > div:last-of-type {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -96,6 +89,6 @@ main.crew .container > div:last-of-type .image__container {
 }
 
 main.crew .container > div:last-of-type .image__container img {
-  height: 500px;
+  height: 600px;
 }
 /*# sourceMappingURL=crew.css.map */
