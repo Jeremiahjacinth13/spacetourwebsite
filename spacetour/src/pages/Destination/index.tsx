@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, Variants } from 'framer-motion'
 import './destination.css'
 import data from '../../data.json'
 import { NavLink, useParams } from 'react-router-dom'
@@ -30,6 +30,38 @@ const Destination = () => {
       images: { ...destination.images, png: destinationImages[index] },
     }),
   )
+
+  const destinationDistanceAnimationContainer: Variants = {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+      transition: {
+        duration: 2,
+        staggerChildren: 0.5,
+        delayChildren: 0.5,
+      },
+    },
+    exit: {
+      opacity: 0,
+    },
+  }
+
+  const destinationDistanceAnimation: Variants = {
+    initial: {
+      y: 100,
+    },
+    animate: {
+      transition: {
+        duration: 1,
+      },
+      y: 0,
+    },
+    exit: {
+      y: -100,
+    },
+  }
 
   const destination: DestinationType = (function () {
     if (destinationName) {
@@ -72,7 +104,11 @@ const Destination = () => {
               {destinations.map((destination) => (
                 <NavLink
                   className={({ isActive }) =>
-                    `nav__navitem ${isActive && 'nav__navitem--active'}`
+                    `nav__navitem ${isActive && 'nav__navitem--active'} ${
+                      destination.name.toLowerCase() === 'moon' &&
+                      !destinationName &&
+                      'nav__navitem--active'
+                    }`
                   }
                   to={`/destination/${destination.name.toLowerCase()}`}
                 >
@@ -82,7 +118,7 @@ const Destination = () => {
             </nav>
             <div className="animate-down">
               <motion.h1
-                initial={{ y: -100, opacity: 0,  }}
+                initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 100, opacity: 0 }}
                 transition={{ duration: 0.5 }}
@@ -92,21 +128,41 @@ const Destination = () => {
               </motion.h1>
             </div>
             <div className="animate-down">
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <motion.p
+                initial={{ opacity: 0, y: 100 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ x: '-50%', opacity: 0 }}
+              >
                 {destination.description}
               </motion.p>
             </div>
 
             <div className="divider"></div>
-            <motion.div className="destination__distance__time__container">
-              <div>
+            <motion.div
+              className="destination__distance__time__container"
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={destinationDistanceAnimationContainer}
+            >
+              <motion.div
+                variants={destinationDistanceAnimation}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              >
                 <p>AVG. DISTANCE</p>
                 <h1 className="heading heading-5">{destination.distance}</h1>
-              </div>
-              <div>
+              </motion.div>
+              <motion.div
+                variants={destinationDistanceAnimation}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              >
                 <p>EST. TRAVEL TIME</p>
                 <h1 className="heading heading-5">{destination.travel}</h1>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
